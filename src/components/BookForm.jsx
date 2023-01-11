@@ -11,8 +11,11 @@ const BookForm = (props) => {
     date: props.book ? props.book.date : ''
   });
 
+  console.log(book)
+
   const [errorMsg, setErrorMsg] = useState('');
   const { bookname, author, price, quantity } = book;
+  console.log({author})
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -39,9 +42,9 @@ const BookForm = (props) => {
     }
     setErrorMsg(errorMsg);
   };
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log(value)
     switch (name) {
       case 'quantity':
         if (value === '' || parseInt(value) === +value) {
@@ -66,7 +69,6 @@ const BookForm = (props) => {
         }));
     }
   };
-
   return (
     <div className="main-form">
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
