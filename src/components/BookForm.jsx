@@ -9,13 +9,11 @@ const BookForm = (props) => {
     quantity: props.book ? props.book.quantity : '',
     price: props.book ? props.book.price : '',
     date: props.book ? props.book.date : ''
-  });
-
-  console.log(book)
+  });        
+//   console.log(book)
 
   const [errorMsg, setErrorMsg] = useState('');
   const { bookname, author, price, quantity } = book;
-  console.log({author})
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -36,6 +34,7 @@ const BookForm = (props) => {
         quantity,
         date: new Date()
       };
+    //   console.log(book.bookname)
       props.handleOnSubmit(book);
     } else {
       errorMsg = 'Please fill out all the fields.';
@@ -44,9 +43,9 @@ const BookForm = (props) => {
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(value)
     switch (name) {
       case 'quantity':
+        //checks to make sure that the input is not a decimal number
         if (value === '' || parseInt(value) === +value) {
           setBook((prevState) => ({
             ...prevState,
@@ -55,6 +54,7 @@ const BookForm = (props) => {
         }
         break;
       case 'price':
+        //checks to make sure the price input is a digit followed by a '.' and then 2 digits 
         if (value === '' || value.match(/^\d{1,}(\.\d{0,2})?$/)) {
           setBook((prevState) => ({
             ...prevState,
