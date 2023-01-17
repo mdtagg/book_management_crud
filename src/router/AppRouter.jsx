@@ -7,16 +7,21 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import EditBook from '../components/EditBook'
 
 const AppRouter = () => {
+  //1. The first thing our app does upon rendering our main page is to check local storage for any values => localStorage
   //books and setBooks are value and setValue in the useLocalStorage component
   const [books, setBooks] = useLocalStorage('books', []);
-  // console.log(books)
+  //16. setBooks is called which changes the state of books. useLocalStorage is also called => useLocalStorage
   return (
+    //keeps track of where the users are on each of the rendered pages
     <BrowserRouter>
       <div>
         <Header />
         <div className="main-content">
           <Switch>
           <Route
+          //5.The BookList path matches our / path so our BookList is rendered => BooksList
+          //render method takes default props (history,location,match) so we are passing those in as attributes in the AddBook component
+          //18. BookList is rendered again with the new books state passed in. => BookList
               render={(props) => (
                 <BooksList {...props} books={books} setBooks={setBooks} />
               )}
@@ -24,7 +29,6 @@ const AppRouter = () => {
               exact={true}
             />
             <Route
-            //render method takes default props (history,location,match) so we are passing those in as attributes in the AddBook component
               render={(props) => (
                 <AddBook {...props} books={books} setBooks={setBooks} />
               )}

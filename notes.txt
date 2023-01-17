@@ -1,0 +1,4 @@
+Questions 
+
+1. why can i not get anything to console log in the useLocalStorage hook 
+2. why are we using React.fragment in addBook 

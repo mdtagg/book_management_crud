@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Header = () => {
+  //4. Here we render our Header component with two NavLinks that reference the routes in the AppRouter component when clicked => AppRouter(BookList)
   return (
     <header>
       <h1>Book Management App</h1>
