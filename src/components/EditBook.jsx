@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BookForm from './BookForm';
 import { useParams } from 'react-router-dom';
+import BooksContext from '../context/BooksContext';
 
 //21. Once the edit button is pressed on the card, the App Router history is changed to the edit path with a dynamic parameter at the end
 //that is the id of the book that was pressed. 
 
 //22. The books state is filtered to the book that matches the id passed in which is passed in as a prop for BookForm => BookForm
-const EditBook = ({ history, books, setBooks }) => {
+const EditBook = ({ history }) => {
   //useParams() returns an object of key value pairs of the dynamic parameters of a url (in this case id), so id is going to be 
   //the id of the book card we clicked on 
+  const { books, setBooks } = useContext(BooksContext);
   const { id } = useParams();
   const bookToEdit = books.find((book) => book.id === id);
 

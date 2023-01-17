@@ -1,9 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
 import Book from './Book';
+import { useContext } from 'react';
+import BooksContext from '../context/BooksContext';
 
-const BooksList = ({ books, setBooks }) => {
-
+const BooksList = () => {
+  const { books, setBooks } = useContext(BooksContext);
   //24. We delete a book here. Once delete has been pressed on a book card this function is called. We updated the books state to be all 
   //the books whose id does not match the id of the book we pressed. 
   const handleRemoveBook = (id) => {

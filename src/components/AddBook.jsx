@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import BookForm from './BookForm';
+import BooksContext from '../context/BooksContext';
 
-const AddBook = ({ history,books,setBooks }) => {
+const AddBook = ({history}) => {
   
   //15. we have added a book with 6 properties defined in the BookForm and update the state of books to be an array with the newest book 
   //first and the rest of the books after it. We also push the / path to the history prop in ReactRouter which brings us
   //back to the BookList page => AppRouter 
+  const { books, setBooks } = useContext(BooksContext);
   const handleOnSubmit = (book) => {
         setBooks([book, ...books]);
         history.push('/');
