@@ -6,7 +6,7 @@ const Header = () => {
     <header>
         <h1>Book Management App</h1>
         <hr/>
-        <div className='main-content'>
+        <div className='links'>
             <NavLink to='/' className='link' activeClassName="active">
                 Book List
             </NavLink>
