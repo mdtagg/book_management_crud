@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import BooksContext from "../context/BooksContext";
 
 const BookList = () => {
+    const { books,setBooks } = useContext(BooksContext)
     return (
-        <div className='main-content'>
-            No books found, add a new book 
-        </div>
+        <React.Fragment>
+            <div className='book-list'>
+                {books.length !== 0 ? (
+                    books.map(book => {
+                        <Book key={book.id} />
+                    })) : (
+                    <p className='message'>'No books so far, please add more!'</p>
+                )}
+            </div>
+        </React.Fragment>
     )
 }
 
