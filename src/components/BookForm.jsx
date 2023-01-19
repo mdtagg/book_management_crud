@@ -27,20 +27,20 @@ const BookForm = (props) => {
                 if(value === '' || parseInt(value) === +value) {
                     setBook((prevState) => ({
                         ...prevState,
-                        name:value
+                        [name]:value
                     }))
                 }
             case 'price':
                 if(value === '' || value.match(/^\d{1,}(\.\d{0,2})?$/)) {
                     setBook((prevState) => ({
                         ...prevState,
-                        name:value
+                        [name]:value
                     }))
                 }
             default:
                 setBook((prevState) => ({
                     ...prevState,
-                    name:value
+                    [name]:value
                 }))
         }
     }
