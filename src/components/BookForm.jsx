@@ -14,11 +14,35 @@ const BookForm = (props) => {
             date: props.book ? props.book.date : ''
         }
     })
+    const [ error, setError ] = useState('')
     // console.log(props.book)
-    const { title,author,quantity,price,date } = book
-    console.log(title)
-    function handleInput() {
-
+    const { title,author,quantity,price } = book
+    
+    function handleInput(e) {
+        const name = e.target.name
+        const value = e.target.value
+        console.log(value)
+        switch(name) {
+            case 'quantity':
+                if(value === '' || parseInt(value) === +value) {
+                    setBook((prevState) => ({
+                        ...prevState,
+                        name:value
+                    }))
+                }
+            case 'price':
+                if(value === '' || value.match(/^\d{1,}(\.\d{0,2})?$/)) {
+                    setBook((prevState) => ({
+                        ...prevState,
+                        name:value
+                    }))
+                }
+            default:
+                setBook((prevState) => ({
+                    ...prevState,
+                    name:value
+                }))
+        }
     }
     function handleOnSubmit() {
 
@@ -34,6 +58,7 @@ const BookForm = (props) => {
                     placeholder='Enter Book Title'
                     name='booktitle'
                     onChange={handleInput}
+                    value={title}
                     />
                 </Form.Group>
                 <Form.Group controlId='author'>
@@ -44,6 +69,7 @@ const BookForm = (props) => {
                     placeholder='Enter Book Author'
                     name='author'
                     onChange={handleInput}
+                    value={author}
                     />
                 </Form.Group>
                 <Form.Group controlId='quantity'>
@@ -54,6 +80,7 @@ const BookForm = (props) => {
                     placeholder='Enter Quantity'
                     name='quantity'
                     onChange={handleInput}
+                    value={quantity}
                     />
                 </Form.Group>
                 <Form.Group controlId='price'>
@@ -64,6 +91,7 @@ const BookForm = (props) => {
                     placeholder='Enter Price'
                     name='price'
                     onChange={handleInput}
+                    value={price}
                     />
                 </Form.Group>
             </Form>
