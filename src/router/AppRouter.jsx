@@ -9,15 +9,14 @@ import EditBook from "../components/EditBook";
 
 const AppRouter = () => {
     const [ books,setBooks ] = UseLocalStorage('books',[])
-    console.log(books)
      return (
         <BrowserRouter>
         <div>
             <Header />
-            <div className='main'>
+            <div className='main-content'>
                 <BooksContext.Provider value={{ books,setBooks }}>
                     <Switch>
-                        <Route path='/' component={BookList} exact />
+                        <Route path='/' component={BookList} exact={true} />
                         <Route path='/add' component={AddBook} />
                         <Route path='/edit/:id' component={EditBook} />
                         <Route component={() => <Redirect to='/' /> } />

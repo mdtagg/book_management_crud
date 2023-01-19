@@ -3,14 +3,14 @@ import React from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-
 const Book = ({
     id,
     title,
     author,
     quantity,
     price,
-    date
+    date,
+    handleOnDelete
 }) => {
     const history = useHistory()
     return (
@@ -24,7 +24,7 @@ const Book = ({
                     <div>Date: {new Date(date).toDateString()}</div>
                 </div>
                 <Button variant='primary' onClick={() => history.push(`/edit/${id}`)}>Edit</Button>{'  '}
-                <Button variant='danger'>Delete</Button>
+                <Button variant='danger' onClick={() => handleOnDelete(id)}>Delete</Button>
             </Card.Body>
         </Card>
     )
