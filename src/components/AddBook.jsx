@@ -1,10 +1,14 @@
 import React from "react";
+import BookForm from "./BookForm";
 
-const AddBook = () => {
+const AddBook = ({books,setBooks}) => {
+    function handleOnSubmit(book) {
+
+    }
     return (
-        <div>
-
-        </div>
+        <React.Fragment>
+            <BookForm onSubmit={handleOnSubmit} />
+        </React.Fragment>
     )
 }
 
