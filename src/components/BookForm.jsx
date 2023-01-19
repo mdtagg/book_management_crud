@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import {Form, Button} from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
+import { v4 as uuid4 } from 'uuid'
 // import BooksContext from '../context/BooksContext'
 
 const BookForm = (props) => {
@@ -15,13 +16,10 @@ const BookForm = (props) => {
         }
     })
     const [ error, setError ] = useState('')
-    // console.log(props.book)
     const { title,author,quantity,price } = book
     
     function handleInput(e) {
-        const name = e.target.name
-        const value = e.target.value
-        console.log(value)
+        const { name, value } = e.target
         switch(name) {
             case 'quantity':
                 if(value === '' || parseInt(value) === +value) {
@@ -44,11 +42,28 @@ const BookForm = (props) => {
                 }))
         }
     }
-    function handleOnSubmit() {
-
+    function handleOnSubmit(e) {
+        e.preventDefault()
+        const values = [title,author,quantity,price].map(value => value.trim())
+        let errorMessage = ''
+        if(values.every(value => value !== '' || value !== 0)) {
+            const book = {
+                id:uuid4(),
+                title:title,
+                author:author,
+                quantity:quantity,
+                price:price,
+                date: new Date()
+            }
+            props.handleOnSubmit(book)
+        } else {
+            errorMessage = 'Field empty or incomplete'
+        }
+        setError(errorMessage)
     }
     return (
         <div className='main-form'>
+            {error && <p className='errorMsg'>{error}</p>}
             <Form onSubmit={handleOnSubmit}>
                 <Form.Group controlId='title'>
                     <Form.Label>Book Title: </Form.Label>
@@ -56,7 +71,7 @@ const BookForm = (props) => {
                     type='text' 
                     className='input-control'
                     placeholder='Enter Book Title'
-                    name='booktitle'
+                    name='title'
                     onChange={handleInput}
                     value={title}
                     />
@@ -94,6 +109,9 @@ const BookForm = (props) => {
                     value={price}
                     />
                 </Form.Group>
+                <Button variant="primary" type="submit" className="submit-btn" >
+                    Add Book
+                </Button>
             </Form>
         </div>
     )
