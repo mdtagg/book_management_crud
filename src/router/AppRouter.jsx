@@ -5,6 +5,7 @@ import BookList from '../components/BookList'
 import UseLocalStorage from "../Hooks/UseLocalStorage";
 import BooksContext from "../context/BooksContext";
 import AddBook from "../components/AddBook";
+import EditBook from "../components/EditBook";
 
 const AppRouter = () => {
     const [ books,setBooks ] = UseLocalStorage('books',[])
@@ -18,6 +19,8 @@ const AppRouter = () => {
                     <Switch>
                         <Route path='/' component={BookList} exact />
                         <Route path='/add' component={AddBook} />
+                        <Route path='/edit/:id' component={EditBook} />
+                        <Route component={() => <Redirect to='/' /> } />
                     </Switch>
                 </BooksContext.Provider>
             </div>
