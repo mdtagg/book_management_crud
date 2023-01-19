@@ -46,7 +46,7 @@ const BookForm = (props) => {
         e.preventDefault()
         const values = [title,author,quantity,price].map(value => value.trim())
         let errorMessage = ''
-        if(values.every(value => value !== '' || value !== 0)) {
+        if(values.every(value => value !== '' && value !== 0)) {
             const book = {
                 id:uuid4(),
                 title:title,

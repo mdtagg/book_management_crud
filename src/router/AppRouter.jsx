@@ -8,6 +8,7 @@ import AddBook from "../components/AddBook";
 
 const AppRouter = () => {
     const [ books,setBooks ] = UseLocalStorage('books',[])
+    console.log(books)
      return (
         <BrowserRouter>
         <div>

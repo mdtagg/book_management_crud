@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import BookForm from "./BookForm";
 import BooksContext from "../context/BooksContext";
 
-const AddBook = () => {
+const AddBook = ({history}) => {
     const { books,setBooks } = useContext(BooksContext)
     function handleOnSubmit(book) {
-        console.log(book)
+        setBooks([book,...books])
+        history.push('/')
     }
     return (
         <React.Fragment>
