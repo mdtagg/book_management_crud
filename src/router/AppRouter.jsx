@@ -8,13 +8,12 @@ import AddBook from "../components/AddBook";
 
 const AppRouter = () => {
     const [ books,setBooks ] = UseLocalStorage('books',[])
-    console.log(books)
      return (
         <BrowserRouter>
         <div>
             <Header />
             <div className='main'>
-                <BooksContext.Provider value={(books,setBooks)}>
+                <BooksContext.Provider value={{ books,setBooks }}>
                     <Switch>
                         <Route path='/' component={BookList} exact />
                         <Route path='/add' component={AddBook} />

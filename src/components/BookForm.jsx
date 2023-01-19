@@ -1,8 +1,22 @@
-
+import { useState } from 'react'
 import {Form, Button} from 'react-bootstrap'
+// import BooksContext from '../context/BooksContext'
 
 const BookForm = (props) => {
-    
+    // const { books,setBooks } = useContext(BooksContext)
+
+    const [book,setBook] = useState(() => {
+        return {
+            title: props.book ? props.book.title : '',
+            author: props.book ? props.book.author : '',
+            quantity: props.book ? props.book.quantity : '',
+            price: props.book ? props.book.price : '',
+            date: props.book ? props.book.date : ''
+        }
+    })
+    // console.log(props.book)
+    const { title,author,quantity,price,date } = book
+    console.log(title)
     function handleInput() {
 
     }
